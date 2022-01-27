@@ -1,0 +1,14 @@
+[
+    {
+        "cd": 1,
+        "nm": "On Base Value %"
+    },
+    {
+        "cd": 2,
+        "nm": "On Quantity"
+    },
+    {
+        "cd": 3,
+        "nm": "Discount Amount"
+    }
+]

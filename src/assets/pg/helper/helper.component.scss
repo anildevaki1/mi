@@ -1,0 +1,24 @@
+
+// div.dataTables_scrollBody {
+//   overflow: scroll !important;
+//   height: calc(100vh-250px) !important;
+// }
+
+
+
+.helperheight{
+    height:calc(100vh - 158px) !important;
+    
+}
+
+table tbody {
+    display: block;
+    height: calc(100vh - 224px);
+    overflow-y: scroll;
+  }
+  
+  table thead, table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }

@@ -1,0 +1,59 @@
+<div class="container-fluid" *ngIf="!report">
+<br>
+    <div class="card mt-2 shadow-sm">
+        <div class="card-header bg-primary text-light">
+            GSTR1
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col col-sm-7 border border-start-0 border-bottom-0 border-top-0 border-end-1">
+
+                    <div class="row">
+                        <div class="col col-sm-6">
+                            <div class="form-group">   
+                                <label class="label">From Date</label>
+                                <input type="date" class="form-control shadow-none rounded-0">
+                            </div>
+                        </div>
+                        <div class="col col-sm-6">
+                            <div class="form-group shadow-none">
+                                <label class="label">To Date</label>
+                                <input type="date" class="form-control shadow-none rounded-0">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group shadow-none mb-2">
+                        <label class="label">GSTIN #</label>
+                        <input class="form-control shadow-none rounded-0">
+                    </div>
+
+
+                    <div class="form-group shadow-none  mb-2">
+                        <label class="label">Branch</label>
+                        <select class="form-select shadow-none rounded-0">
+                            <option value=" ">[All]</option>
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group shadow-none">
+                        <label class="label">Report</label>
+                        <select class="form-select shadow-none rounded-0"></select>
+                    </div>
+                </div>
+                <div class="col col-sm-5 d-flex justify-content-center align-items-center">
+                    <button class="btn shadow-none btn-primary shadow-none rounded-0" (click)="showRpt()">Preview</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid" *ngIf="report">
+lkjlsdfsdf
+</div>
