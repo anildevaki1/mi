@@ -1,0 +1,45 @@
+ 
+<div class="card" style="padding-top: 1rem;">
+    <div class="card-header p-1">
+        <div class="row m-0">
+            <div class="col-12 col-sm-3">
+                <ng-select [items]="reference.company" bindLabel="cmp_name" bindValue="cmp_code" [(ngModel)]="entity.cmp">
+                </ng-select>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="row m-0">
+                    <div class="col-6">
+                        <div class="input-group">
+                            <i class="input-group-text">From</i>
+                            <input type="date" class="form-control" [(ngModel)]="entity.sdt">
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="input-group">
+                            <i class="input-group-text">To</i>
+                            <input type="date" class="form-control" [(ngModel)]="entity.edt">
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <button class="btn btn-primary" (click)="print()"> Show</button>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+            <div class="col-2 col-sm-1 offset-sm-2 text-end">
+                <button class="btn shadow-none" (click)="close()">
+                    <i class="bi bi-x-lg h5"></i>
+                </button>
+            </div>
+          
+        </div>
+       
+    </div>
+<div class="card-body p-1">
+
+    <app-rdlcviewer [params]="params" [trustedUrl]="url" [width]="'100%'" [height]="'calc(100vh - 150px)'" [ison]="false"></app-rdlcviewer>
+</div>
+    
+</div>

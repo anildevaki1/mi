@@ -1,259 +1,313 @@
-<div class="container p-0 bg-secondary">
+<div class=" d-flex justify-content-center p-0">
 
-   
-      <div class="accordion" id="accordionExample">
-        <div class="accordion-item border-top-0 border-end-0 border-start-0">
-          <h2 class="accordion-header" id="headingOne">
-            <div class="row">
-              <div class="col col-sm-11 p-0">
-                <button class="btn w-100 text-start border-bottom h-100 p-0" (click)="salesrpt()">
-                  Sales
-                </button>
-              </div>
-              <div class="col col-1 p-0">
-                <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#saledetl" aria-expanded="true" aria-controls="collapseOne">
-                </div>
-              </div>
-            </div>
-
-          </h2>
-          <div id="saledetl" class="accordion-collapse collapse" aria-labelledby="headingOne"
-            data-bs-parent="#saledetl">
-            <div class="accordion-body">
-              <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse
-              plugin
-              adds the appropriate classes that we use to style each element. These classes control the overall
-              appearance,
-              as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just about any HTML can go within the
-              <code>.accordion-body</code>, though the transition does limit overflow.
+  <!-- 1>--st accordian -->
+  <div class="accordion container-fluid" style="width: 90%;" id="accordionExample">
+    <div class="accordion-item border-top-0 border-end-0 border-start-0 mt-2">
+      <h2 class="accordion-header" id="headingOne">
+        <div class="row m-0">
+          <div class="col col-lg-11 col-md-11 col-sm-10 px-2">
+            <button class="btn  w-100 text-start border-bottom h-100 p-0" (click)="sales()" type="button">
+              <i class="fa-solid fa-magnifying-glass fa-beat me-4" style="color: MediumSeaGreen;"></i> <b> Sales</b>
+            </button>
+          </div>
+          <div class="col col-1 p-0">
+            <div class="accordion-button collapsed" (click)="sales()" type="button">
             </div>
           </div>
         </div>
+      </h2>
+    </div>
 
-        <div class="accordion-item border-top-0 border-end-0 border-start-0">
-          <h2 class="accordion-header" id="headingOne">
+    <div class="accordion-item border-top-0 border-end-0 border-start-0">
+      <h2 class="accordion-header" id="headingOne">
 
-            <div class="row">
-              <div class="col col-sm-11 p-0">
-                <button class="btn w-100 text-start border-bottom h-100 p-0 my-surface">
-                  Purchase
-                </button>
-              </div>
-              <div class="col col-1 p-0">
-                <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#purchasedetl" aria-expanded="true" aria-controls="collapseOne">
-                </div>
-              </div>
-            </div>
-          </h2>
-          <div id="purchasedetl" class="accordion-collapse collapse" aria-labelledby="headingOne"
-            data-bs-parent="#purchasedetl">
-            <div class="accordion-body">
-              <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse
-              plugin
-              adds the appropriate classes that we use to style each element. These classes control the overall
-              appearance,
-              as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just about any HTML can go within the
-              <code>.accordion-body</code>, though the transition does limit overflow.
+        <div class="row m-0">
+          <div class="col col-lg-11 col-md-11 col-sm-10 px-2">
+            <button class="btn w-100 text-start border-bottom h-100 p-0 my-surface">
+              <i class="fa-solid fa-bag-shopping fa-beat me-4" style="color:rgb(60, 179, 113)"></i> <b> Purchase</b>
+
+            </button>
+          </div>
+          <div class="col col-1 p-0">
+            <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#purchasedetl" aria-expanded="true" aria-controls="collapseOne">
             </div>
           </div>
         </div>
-
-        <div class="accordion-item border-top-0 border-end-0 border-start-0">
-          <h2 class="accordion-header" id="headingOne">
-
-            <div class="row">
-              <div class="col col-sm-11 p-0">
-                <button class="btn w-100 text-start border-bottom h-100 p-0">
-                  Statutory
-                </button>
-              </div>
-              <div class="col col-1 p-0">
-                <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#strydetl" aria-expanded="true" aria-controls="collapseOne">
-                </div>
-              </div>
-            </div>
-          </h2>
-          <div id="strydetl" class="accordion-collapse collapse " aria-labelledby="headingOne"
-            data-bs-parent="#strydetl">
-            <div class="accordion-body p-0">
-              
-              <button type="button"
-                class="btn border btn-light border-1 my-1 rounded-pill text-primary w-100 text-start d-flex justify-content-between p-2"
-                style="background-color: #e1f5fe;" (click)="GSTR1()"
-                >
-                GSTR1 <i class="bi bi-chevron-right"></i> </button>
-              <button type="button"
-                class="btn border border-1   my-1 rounded-pill text-primary w-100 text-start d-flex justify-content-between p-2"
-                style="background-color: #e1f5fe;"
-                >
-                GSTR2 <i class="bi bi-chevron-right"></i></button>
-              <button type="button"
-                class="btn border border-1 my-1 rounded-pill text-primary w-100 text-start d-flex justify-content-between p-2"
-                style="background-color: #e1f5fe;"
-                >
-                GSTR3B <i class="bi bi-chevron-right"></i></button>
-              <button type="button"
-                class="btn border border-1 my-1 rounded-pill text-primary w-100 text-start d-flex justify-content-between p-2"
-                style="background-color: #e1f5fe;"
-                >
-                Outward Supplies <i class="bi bi-chevron-right"></i></button>
-              <button type="button"
-                class="btn border border-1 my-1 rounded-pill text-primary w-100 text-start d-flex justify-content-between p-2"
-                style="background-color: #e1f5fe;"
-                >
-                Inward Supplies <i class="bi bi-chevron-right"></i></button>
-              <button type="button"
-                class="btn border border-1 my-1 rounded-pill text-primary w-100 text-start d-flex justify-content-between p-2"
-                style="background-color: #e1f5fe;"
-                >
-                TCS By Receipt <i class="bi bi-chevron-right"></i></button>
-
-              <button type="button"
-                class="btn border border-1 my-1 rounded-pill text-primary w-100 text-start d-flex justify-content-between p-2"
-                style="background-color: #e1f5fe;"
-                >
-                TCS By sales <i class="bi bi-chevron-right"></i></button>
-              <button type="button"
-                class="btn border border-1 my-1 rounded-pill text-primary w-100 text-start d-flex justify-content-between p-2"
-                style="background-color: #e1f5fe;"
-                >
-                TDS-194Q<i class="bi bi-chevron-right"></i></button>
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item border-top-0 border-end-0 border-start-0">
-          <h2 class="accordion-header" id="headingOne">
-
-            <div class="row">
-              <div class="col col-sm-11 p-0">
-                <button class="btn w-100 text-start border-bottom h-100 p-0">
-                  Audit
-                </button>
-              </div>
-              <div class="col col-1 p-0">
-                <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#auditdetl" aria-expanded="true" aria-controls="collapseOne">
-                </div>
-              </div>
-            </div>
-          </h2>
-          <div id="auditdetl" class="accordion-collapse collapse" aria-labelledby="headingOne"
-            data-bs-parent="#auditdetl">
-            <div class="accordion-body p-0">
-
-              <button type="button"
-                class="btn border border-1 my-1 rounded-pill text-primary w-100 text-start d-flex justify-content-between p-2">
-                <div>
-                  
-                  Ledgers
-                </div>
-                <i class="bi bi-chevron-right"></i>
-              </button>
-              <button type="button"
-                class="btn border border-1 my-1 rounded-pill text-primary w-100 text-start d-flex justify-content-between p-2">
-                <div>
-                 
-                  Group List
-                </div>
-                <i class="bi bi-chevron-right"></i>
-              </button>
-              <button type="button"
-                class="btn border border-1 my-1 rounded-pill text-primary w-100 text-start d-flex justify-content-between p-2">
-
-                <div>
-
-                  Trial Balance
-                </div>
-                <i class="bi bi-chevron-right"></i>
-              </button>
-              <button type="button"
-                class="btn border border-1 my-1 rounded-pill text-primary w-100 text-start d-flex justify-content-between p-2">Balance
-                Sheet <i class="bi bi-chevron-right"></i> </button>
-              <button type="button"
-                class="btn border border-1 my-1 rounded-pill text-primary w-100 text-start d-flex justify-content-between p-2">Trading
-                and Mfgr A/C <i class="bi bi-chevron-right"></i></button>
-              <button type="button"
-                class="btn border border-1 my-1 rounded-pill text-primary w-100 text-start d-flex justify-content-between p-2">Profit
-                and Loss A/C <i class="bi bi-chevron-right"></i></button>
-              <button type="button"
-                class="btn border border-1 my-1 rounded-pill text-primary w-100 text-start d-flex justify-content-between p-2">Stock
-                Valuation <i class="bi bi-chevron-right"></i></button>
-              <button type="button"
-                class="btn border border-1 my-1 rounded-pill text-primary w-100 text-start d-flex justify-content-between p-2">Item
-                Register <i class="bi bi-chevron-right"></i></button>
-              <button type="button"
-                class="btn border border-1 my-1 rounded-pill text-primary w-100 text-start d-flex justify-content-between p-2">Tranding
-                Analysis <i class="bi bi-chevron-right"></i></button>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item border-top-0 border-end-0 border-start-0">
-          <h2 class="accordion-header" id="headingOne">
-
-            <div class="row">
-              <div class="col col-sm-11 p-0">
-                <button class="btn w-100 text-start border-bottom h-100 p-0">
-                  Shares
-                </button>
-              </div>
-              <div class="col col-1 p-0">
-                <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#sharesdetl" aria-expanded="true" aria-controls="collapseOne">
-                </div>
-              </div>
-            </div>
-          </h2>
-          <div id="sharesdetl" class="accordion-collapse collapse" aria-labelledby="headingOne"
-            data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse
-              plugin
-              adds the appropriate classes that we use to style each element. These classes control the overall
-              appearance,
-              as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just about any HTML can go within the
-              <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
-          </div>
-        </div>
-
-
-        <div class="accordion-item border-top-0 border-end-0 border-start-0">
-          <h2 class="accordion-header" id="headingOne">
-            <div class="row">
-              <div class="col col-sm-11 p-0">
-                <button class="btn w-100 text-start border-bottom h-100 p-0">
-                  Inventory
-                </button>
-              </div>
-              <div class="col col-1 p-0">
-                <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#inventrydetl" aria-expanded="true" aria-controls="collapseOne">
-                </div>
-              </div>
-            </div>
-          </h2>
-          <div id="inventrydetl" class="accordion-collapse collapse" aria-labelledby="headingOne"
-            data-bs-parent="#inventrydetl">
-            <div class="accordion-body">
-              <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse
-              plugin
-              adds the appropriate classes that we use to style each element. These classes control the overall
-              appearance,
-              as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just about any HTML can go within the
-              <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
-          </div>
+      </h2>
+      <div id="purchasedetl" class="accordion-collapse collapse" aria-labelledby="headingOne"
+        data-bs-parent="#purchasedetl">
+        <div class="accordion-body">
+          <strong>Under Construction... </strong>
         </div>
       </div>
     </div>
-  
+
+    <!-- 2>---nd accordion -->
+    <div class="accordion-item border-top-0 border-end-0 border-start-0">
+      <h2 class="accordion-header" id="headingOne">
+
+        <div class="row m-0">
+          <div class="col col-lg-11 col-md-11 col-sm-10 px-2">
+            <button class="btn w-100 text-start border-bottom h-100 p-0" data-bs-toggle="collapse" data-bs-target="#strydetl"
+            aria-expanded="true" aria-controls="collapseOne">
+              <i class="fa-solid fa-users fa-beat me-3" style="color: rgb(238, 130, 238);"></i> <b> Outstanding</b>
+            </button>
+          </div>
+          <div class="col col-1 p-0">
+            <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#strydetl"
+              aria-expanded="true" aria-controls="collapseOne">
+            </div>
+          </div>
+        </div>
+      </h2>
+      <div id="strydetl" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#strydetl">
+        <div class="accordion-body p-0">
+
+          <div class="row m-0">
+ 
+            <div class="col-12 col-sm-2 p-0">
+              <div class="card m-1" mat-card style="height:200px" (click)="navpage('reports/outstanding/debtorSoutstanding')">
+                <div class="card-body" style="width: 150px;height: 150px;margin: auto;">
+                  <img [src]="grplistimg" style="width: 100%;height: 100%;">
+                </div>
+                <div class="card-footer">
+                  <p class="mb-0 text-center">Debtors Outstanding </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-2 p-0">
+              <div class="card m-1" mat-card style="height:200px" (click)="navpage('reports/outstanding/creditorSoutstanding')">
+                <div class="card-body" style="width: 150px;height: 150px;margin: auto;">
+                  <img [src]="grplistimg" style="width: 100%;height: 100%;">
+                </div>
+                <div class="card-footer px-0">
+                  <p class="mb-0 text-center"> Creditors Outstanding</p>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 3>---nd accordion -->
+    <div class="accordion-item border-top-0 border-end-0 border-start-0">
+
+
+      <!-- -------------------auditValid -->
+      <h2 class="accordion-header" id="headingOne" *ngIf="this.provider.companyinfo.selectedbranch.firm_id">
+
+        <div class="row m-0">
+          <div class="col col-lg-11 col-md-11 col-sm-10 px-2">
+            <button class="btn  w-100 text-start border-bottom h-100 p-0" type="button" data-bs-toggle="collapse"
+              data-bs-target="#auditdetl">
+              <i class="fa-solid fa-magnifying-glass fa-beat me-4" style="color: MediumSeaGreen;"></i> <b> Audit</b>
+            </button>
+          </div>
+          <div class="col col-1 p-0">
+            <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#auditdetl"
+              aria-expanded="true" aria-controls="collapseOne">
+            </div>
+          </div>
+        </div>
+      </h2>
+
+      <!-- ------------------------auditInvalid -->
+      <h2 class="accordion-header" id="headingOne" *ngIf="!this.provider.companyinfo.selectedbranch.firm_id"
+        (click)="auditinvalid()">
+
+        <div class="row m-0">
+          <div class="col col-lg-11 col-md-11 col-sm-10 px-2">
+            <button class="btn w-100 text-start border-bottom h-100 p-0" type="button">
+              <i class="fa-solid fa-magnifying-glass fa-beat me-4" style="color: MediumSeaGreen;"></i> <b> Audit</b>
+            </button>
+          </div>
+          <div class="col col-1 p-0">
+            <div class="accordion-button collapsed" type="button">
+            </div>
+          </div>
+        </div>
+      </h2>
+
+
+      <div id="auditdetl" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#auditdetl">
+        <div class="accordion-body p-0">
+
+          <div class="row m-0" style="background-color: #fce4ec;">
+
+            <div class="col-12 col-sm-2 p-0">
+              <div class="card m-1" mat-card style="height:200px" (click)="navpage('reports/audit/grouplist')">
+                <div class="card-body" style="width: 150px;height: 150px;margin: auto;">
+                  <img [src]="grplistimg" style="width: 100%;height: 100%;">
+                </div>
+                <div class="card-footer ">
+                  <p class="mb-0 text-center"> Group List</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-2 p-0">
+              <div class="card m-1" mat-card style="height: 200px;" (click)="navpage('reports/audit/trailBalance')">
+                <div class="card-body" style="width: 150px;height: 150px;margin: auto;">
+                  <img [src]="trialblcimg" style="width: 100%;height: 100%;">
+                </div>
+                <div class="   card-footer ">
+                  <p class="mb-0 text-center">Trial Balance</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-2 p-0">
+              <div class="card m-1" mat-card style="height:200px" (click)="navpage('reports/audit/balanceSheet')">
+                <div class="card-body" style="width: 150px;height: 150px;margin: auto;">
+                  <img [src]="balanceshitimg" style="width: 100%;height: 100%;">
+                </div>
+                <div class="   card-footer ">
+                  <p class="mb-0 text-center">Balance Sheet</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-2 p-0">
+              <div class="card  m-1" mat-card style="height:200px" (click)="navpage('reports/audit/mfgr')">
+                <div class="card-body text-center" style="width: 150px;height: 150px;margin: auto;">
+                  <img [src]="mfgrimg" style="width: 100%;height: 100%;">
+                </div>
+                <div class="card-footer px-0">
+                  <p class="mb-0 text-center">Trading
+                    and Mfgr A/C</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-2 p-0">
+              <div class="card m-1" mat-card style="height: 200px;" (click)="navpage('reports/audit/profitandLoss')">
+                <div class="card-body" style="height:150px;width:150px;margin: auto;">
+                  <img [src]="PAndLimg" style="width: 100%;height: 100%;">
+                </div>
+                <div class="   card-footer ">
+                  <p class="mb-0 text-center"> P & L A/C</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-12 col-sm-2 p-0">
+              <div class="card m-1" mat-card style="height:200px" (click)="navpage('reports/audit/stkvalue')">
+                <div class="card-body" style="height:150px;width:150px;margin: auto;">
+                  <img [src]="stkimg" style="width: 100%;height:100%">
+                </div>
+                <div class="card-footer">
+                  <p class="mb-0 text-center"> Stock Valuation</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-12 col-sm-2 p-0">
+
+              <div class="card m-1" mat-card style="height:200px" (click)="navpage('reports/audit/tradingAnalysis')">
+                <div class="card-body" style="height:150px;width: 150px;margin: auto;">
+                  <img [src]="trdAnimg" style="width: 100%;height: 100%;">
+                </div>
+                <div class="card-footer ">
+                  <p class="mb-0 text-center"> Tranding
+                    Analysis</p>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 4>---nd accordion -->
+    <div class="accordion-item border-top-0 border-end-0 border-start-0">
+      <h2 class="accordion-header" id="headingOne">
+
+        <div class="row m-0">
+          <div class="col col-lg-11 col-md-11 col-sm-10 px-2">
+            <button class="btn w-100 text-start border-bottom h-100 p-0">
+              <i class="fa-solid fa-chart-pie  fa-beat me-4" style="color: rgb(158, 10, 255);"></i> <b>Shares</b>
+            </button>
+          </div>
+          <div class="col col-1 p-0">
+            <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sharesdetl"
+              aria-expanded="true" aria-controls="collapseOne">
+            </div>
+          </div>
+        </div>
+      </h2>
+      <div id="sharesdetl" class="accordion-collapse collapse" aria-labelledby="headingOne"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>Under Construction... </strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5>---nd accordion -->
+    <div class="accordion-item border-top-0 border-end-0 border-start-0">
+      <h2 class="accordion-header" id="headingOne">
+        <div class="row m-0">
+          <div class="col col-lg-11 col-md-11 col-sm-10 px-2">
+            <button class="btn w-100 text-start border-bottom h-100 p-0">
+              <i class="fa-solid fa-boxes-stacked fa-beat me-4" style="color: Tomato;"></i> <b> Inventory</b>
+
+            </button>
+          </div>
+          <div class="col col-1 p-0">
+            <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#inventrydetl" aria-expanded="true" aria-controls="collapseOne">
+            </div>
+          </div>
+        </div>
+      </h2>
+      <div id="inventrydetl" class="accordion-collapse collapse" aria-labelledby="headingOne"
+        data-bs-parent="#inventrydetl">
+        <div class="accordion-body">
+          <strong>Under Construction... </strong>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 6>----accordion -->
+    <div class="accordion-item border-top-0 border-end-0 border-start-0">
+      <h2 class="accordion-header" id="headingOne">
+        <div class="row m-0">
+          <div class="col col-lg-11 col-md-11 col-sm-10 px-2">
+            <button class="btn w-100 text-start border-bottom h-100 p-0" (click)="Trans_and_Ware()">
+              <i class="fa-solid fa-truck-fast fa-beat me-4" style="color: rgb(150,75,0);"></i> 
+              <b> Transporting & Warehousing</b>
+               
+            </button>
+          </div>
+          <div class="col col-1 p-0">
+            <div class="accordion-button collapsed" type="button" (click)="Trans_and_Ware()">
+            </div>
+          </div>
+        </div>
+      </h2>
+      
+    </div>
+  </div>
+</div>

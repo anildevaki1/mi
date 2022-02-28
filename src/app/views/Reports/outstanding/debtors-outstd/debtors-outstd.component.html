@@ -1,0 +1,202 @@
+<div class="table-responsive" *ngIf="mode==0">
+  <div class="card mb-0 mt-3">
+    <div class="card-header py-0">
+      <div class="row m-0">
+        <div class="col-9 d-flex align-items-center">
+          <h5> Debtors Outstanding</h5>
+        </div>
+        <div class="col-3 text-end">
+          <button class="btn rotation" (click)="exporttoexl()">
+             <i class="bi bi-file-spreadsheet-fill fa-lg me-2"></i>
+          </button>
+
+          <button class="btn rotation" (click)="setting()">
+            <i class="fa-solid fa-gear fa-spin  fa-lg"></i>
+          </button>
+
+          <button type="button" class="btn me-1" (click)="close()">
+            <i class="bi bi-x-lg h5 float-end"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <div class="card-body p-0">
+      <table class="table w-100 table-bordered table-hover" id="debtOutRpt">
+        <thead class="shadow">
+          <tr>
+            <th style="width: 19%;">Branch Name</th>
+            <th class="text-end" style="width: 11%;">Opening Balance</th>
+            <th class="text-end" style="width: 10%;" *ngFor="let item of entity.debtorsOutstanding.age">{{item}}</th>
+            <th style="width: 10%;">
+              Total
+            </th>
+          </tr>
+
+        </thead>
+        <tbody class="table-responsive">
+          <tr *ngFor="let item of entity.debtorsOutstanding.branch_outstd" (dblclick)="details(item)"
+            style="cursor: pointer;">
+            <td style="width: 19%;">{{item.branch_name}}</td>
+            <td class="text-end" style="width: 11%;">{{item.opbl | number:'1.2-2'}}</td>
+            <td class="text-end" style="width: 10%;">{{item.d5 | number:'1.2-2'}}</td>
+            <td class="text-end" style="width: 10%;">{{item.d4 | number:'1.2-2'}}</td>
+            <td class="text-end" style="width: 10%;">{{item.d3 | number:'1.2-2'}}</td>
+            <td class="text-end" style="width: 10%;">{{item.d2 | number:'1.2-2'}}</td>
+            <td class="text-end" style="width: 10%;">{{item.d1 | number:'1.2-2'}}</td>
+            <td class="text-end" style="width: 10%;">{{item.d0 | number:'1.2-2'}}</td>
+            <td class="text-end" style="width: 10%;">{{item.htotal | number:'1.2-2'}}</td>
+            
+          </tr>
+          <tr *ngIf="!entity.debtorsOutstanding.branch_outstd || entity.debtorsOutstanding.branch_outstd.length ==0" >
+            <td  class="text-center text-bold" colspan="8">No record found.</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td style="width: 19%;" class="fw-bold text-center">Total</td>
+            <td class="text-end" style="width: 11%;">{{entity.opbl| number:'1.2-2'}}</td>
+            <td class="text-end" style="width: 10%;">{{entity.d5total| number:'1.2-2'}}</td>
+            <td class="text-end" style="width: 10%;">{{entity.d4total| number:'1.2-2'}}</td>
+            <td class="text-end" style="width: 10%;">{{entity.d3total| number:'1.2-2'}}</td>
+            <td class="text-end" style="width: 10%;">{{entity.d2total| number:'1.2-2'}}</td>
+            <td class="text-end" style="width: 10%;">{{entity.d1total| number:'1.2-2'}}</td>
+            <td class="text-end" style="width: 10%;">{{entity.d0total| number:'1.2-2'}}</td>
+            <td class="text-end" style="width: 10%;">{{maxtotal | number:'1.2-2'}}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<!-- enddddddddddd Page -->
+
+<div *ngIf="mode==1">
+  <div class="card" style="margin-top: 4.8rem;">
+    <div class="card-header py-0">
+
+      <div class="row m-0">
+        <div class="col-11 d-flex align-items-center">
+          <h5 class="mb-0">{{entity.itemdetltitle}}</h5>
+        </div>
+
+        <div class="col-1   d-flex align-items-center justify-content-end">
+          <button type="button" class="btn me-1" (click)="mode=0">
+            <i class="bi bi-x-lg h5 float-end me-3"></i>
+          </button>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="w-100 table table-bordered table-hover header-fixed">
+          <thead class="shadow">
+            <tr class="py-1">
+              <th style="width: 20%;" class="d-flex">
+                <span class="me-2">
+                  Debtors
+                </span>
+                <div class="input-group has-feedback">
+                  <input type="search" class="form-control form-control-sm" [(ngModel)]="entity.search">
+                  <i class="input-group-text" style="cursor: pointer;">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </i>
+                </div>
+              </th>
+              <th class="text-end p-0 d-flex align-items-center justify-content-center" style="width: 10%;">Opening
+                Balance</th>
+              <th class="text-end" style="width: 10%;" *ngFor="let item of entity.debtorsOutstandingdetls.age">{{item}}
+              </th>
+              <th class="text-end" style="width: 10%;">
+                Total
+              </th>
+
+            </tr>
+
+          </thead>
+          <tbody class="table-responsive" style="height: calc(100vh - 240px);">
+            <tr *ngFor="let item of entity.debtorsOutstandingdetls.data | myFilter : {'acc_name':entity.search}">
+              <td style="width: 20%;font-size: small;">{{item.acc_name}}</td>
+              <td class="text-end" style="width: 10%;">{{item.opbl | number:'1.2-2'}}</td>
+              <td class="text-end" style="width: 10%;">{{item.d5 | number:'1.2-2'}}</td>
+              <td class="text-end" style="width: 10%;">{{item.d4 | number:'1.2-2'}}</td>
+              <td class="text-end" style="width: 10%;">{{item.d3 | number:'1.2-2'}}</td>
+              <td class="text-end" style="width: 10%;">{{item.d2 | number:'1.2-2'}}</td>
+              <td class="text-end" style="width: 10%;">{{item.d1 | number:'1.2-2'}}</td>
+              <td class="text-end" style="width: 10%;">{{item.d0 | number:'1.2-2'}}</td>
+              <td class="text-end" style="width: 10%;">{{item.dhtotal | number:'1.2-2'}}</td>
+            </tr>
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <td style="width: 20%;"></td>
+              <td class="text-end" style="width: 10%;">{{entity.ddopbl | number:'1.2-2'}}</td>
+              <td class="text-end" style="width: 10%;">{{entity.dd5total | number:'1.2-2'}}</td>
+              <td class="text-end" style="width: 10%;">{{entity.dd4total | number:'1.2-2'}}</td>
+              <td class="text-end" style="width: 10%;">{{entity.dd3total | number:'1.2-2'}}</td>
+              <td class="text-end" style="width: 10%;">{{entity.dd2total| number:'1.2-2'}}</td>
+              <td class="text-end" style="width: 10%;">{{entity.dd1total | number:'1.2-2'}}</td>
+              <td class="text-end" style="width: 10%;">{{entity.dd0total | number:'1.2-2'}}</td>
+              <td class="text-end" style="width: 10%;">{{dmaxhtotal | number:'1.2-2'}}</td>
+
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<div class="modal fade" id="settingb" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header p-2">
+        <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
+        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+
+
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <div class="form-group">
+              <label for="">From</label>
+              <input type="Date" class="form-control" [(ngModel)]="entity.sdt">
+            </div>
+          </div>
+
+
+          <div class="col-12 col-lg-6">
+            <div class="form-group">
+              <label for="">To</label>
+              <input type="Date" class="form-control" [(ngModel)]="entity.edt">
+            </div>
+          </div>
+        </div>
+
+
+        <label for="">Categories</label>
+        <ng-select [items]="reference.groupList" bindLabel="sg_name" bindValue="sg_code" [(ngModel)]="entity.sg_code">
+        </ng-select>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-sm btn-primary" (click)="submit()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

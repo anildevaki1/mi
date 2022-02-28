@@ -1,0 +1,215 @@
+<div class="container-fluid" *ngIf="!mode">
+    <div class="card rounded-0" *ngIf="!isgroup">
+        <form #f="ngForm">
+
+            <div class="card-header py-1 px-1 rounded-0 card-header-smash">
+                <div class="row">
+                    <div class="col-12 col-lg-3 col-md-4 d-flex align-items-center">
+                        <h5>Stock valuation</h5>
+                    </div>
+                    <div class="col-12 col-lg-4 offset-lg-5">
+
+                        <div class="row m-0">
+                            <div class="col-12 col-lg-6">
+                                <div class="form-group">
+                                    <input type="date" finDate class="form-control dss-border" name="tdate"
+                                        min="{{this.provider.companyinfo.finyear.fdt | date: 'yyyy-MM-dd'}}"
+                                        max="{{this.provider.companyinfo.finyear.tdt | date: 'yyyy-MM-dd'}}"
+                                        [(ngModel)]="entity.currentDate"
+                                        (change)="entity.edt=entity.currentDate"
+                                        >
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <button class="btn btn-primary shadow-none me-2 shadow-none" (click)="showRecord()">
+                                    Show
+                                </button>
+
+                                <button class="btn btn-primary me-2 shadow-none" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasRight">
+                                    <i class="bi bi-file-break-fill"></i>
+                                </button>
+                                <button class="btn shadow-none shadow_none" (click)="close()">
+                                    <i class="bi bi-x-lg h5"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body p-0" style="height: calc(100vh - 200px);overflow-y: scroll;">
+
+                <div class="row m-0 w-100 border">
+                    <div class="col col-sm-10 p-2 text-start border-rightm">
+                        <b>Type Of Goods</b>
+                    </div>
+                    <div class="col col-sm-2  p-2 text-end border-rightm">
+                        <b> Closing Stock Value</b>
+                    </div>
+                </div>
+                <div class="row m-0 w-100 border">
+                    <div class="col col-sm-10 p-2 text-center border-rightm">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm w-100" name="goods"
+                                [(ngModel)]="reference.goods" (input)="search($event)">
+                        </div>
+                    </div>
+                    <div class="col col-sm-2  p-2 text-center border-rightm">
+                        <input type="text" class="form-control form-control-sm w-100" name="stk"
+                            [(ngModel)]="reference.stk" (input)="search($event)">
+                    </div>
+                </div>
+                <div *ngFor="let item of list | myFilter:searchfield;let i = index" (click)="showGroups(item)">
+                    <div class="row  m-0 w-100 border">
+
+                        <div class="col col-sm-10 p-2 text-left border-rightm">
+                            {{item.tom_name}}
+                        </div>
+                        <div class="col col-sm-2  p-2 text-end border-rightm">
+                            {{item.val | number:'1.2-2'}}
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="card-footer text-end" style="z-index: 1;">
+                <div class="row pe-2">
+                    <div class="col col-sm-10 p-2 text-end border-rightm">
+                        Total
+                    </div>
+
+                    <div class="col col-sm-2 p-2 text-end">
+                        <b> {{tomTotal | number: '1.2-2'}}</b>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+    <div class="card" *ngIf="isgroup">
+        <div class="card-header card-header-smash">
+            <div class="row">
+                <div class="col-12 col-lg-6 col-md-4">
+                    <h5>{{reference.tom_name}}</h5>
+                </div>
+                <div class="col-12 col-lg-1 offset-lg-5">
+
+                    <button class="btn shadow-none" (click)="isgroup=false">
+                        <i class="bi bi-x-lg h5"></i>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body p-0" style="height: calc(100vh - 200px);overflow-y: scroll;">
+
+            <div class="row m-0 w-100 border">
+                <div class="col col-sm-10 p-2 text-start border-rightm">
+                    <b>Type Of Goods</b>
+                </div>
+                <div class="col col-sm-2  p-2 text-center border-rightm">
+                    <b> Closing Stock Value</b>
+                </div>
+            </div>
+            <div *ngFor="let item of groups">
+                <div class="row  m-0 w-100 border">
+
+                    <div class="col col-sm-10 p-2 text-left border-rightm">
+                        {{item.grp_name}}
+                    </div>
+                    <div class="col col-sm-2  p-2 text-end border-rightm">
+                        {{item.val | number:'1.2-2'}}
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<app-rdlcviewer [trustedUrl]="entity.url" [ison]="true"  [params]="entity.params" *ngIf="mode" (closemodalfn)="onclose($event)">
+</app-rdlcviewer>
+
+
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <form #f="ngForm" (ngSubmit)="showReport()"> 
+    <div class="offcanvas-header">
+    
+        <h5 id="offcanvasRightLabel">Stock Valuation</h5>
+        <button type="button" class="btn-close text-reset" id="offcanvase" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+        <div class="form-group">
+            <div class="label">As on</div>
+            <input type="date" class="form-control" name="edt" [(ngModel)]="entity.edt">
+        </div>
+
+        <div class="form-group">
+            <div class="label">Mode</div>
+            <select class="form-select" [(ngModel)]="entity.tom" name="mode">
+                <option *ngFor="let item of reference.toms" [value]="item.tom_id">{{item.tom_nm}}</option>
+            </select>
+        </div>
+
+        <label for="title">Group</label>
+        <ng-select [items]="reference.group" bindLabel="grp_name" name="grp_code" bindValue="grp_code" (change)="getiGroup($event)"
+            [(ngModel)]="entity.grp_code" required></ng-select>
+
+        <div class="form-group">
+            <div class="label">Product</div>
+            <ng-select [items]="reference.product" name="product" bindLabel="I_Name" bindValue="I_id" [(ngModel)]="entity.I_id"
+                [disabled]="!entity.grp_code" (click)="getProductList()" required>
+            </ng-select>
+        </div>
+
+
+        <div class="form-group">
+            <div class="label">Page Break Each Item</div>
+            <select class="form-select" [(ngModel)]="entity.pageBreak" name="PBEI">
+                <option *ngFor="let items of pageBreakData" [value]="items.cd">{{items.nm}}</option>
+            </select>
+        </div>
+
+        <br>
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">Show</button>
+        </div>
+    </div>
+
+</form>    
+</div>
+
+
+
+
+
+
+
+<div aria-live="polite" aria-atomic="true" class="d-flex justify-content-start align-items-center w-100">
+
+    <!-- Then put toasts within -->
+    <div id="grptoast" class="toast align-items-start text-white bg-primary border-0" role="alert"
+        aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                Please Select Grup..
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,185 @@
+<div *ngIf="!mode">
+    <div class="card rounded-0">
+        <div class="card-header d-flex  py-1 px-1 rounded-0 card-header-smash justify-content-between ">
+
+            <div class="row w-100">
+                <div class="col-12 col-sm-8 d-flex align-items-center">
+                    <h5>Balance Sheet</h5>
+                </div>
+                <div class="col-12 col-sm-2">
+                    <div class="form-group">
+                        <input type="date" finDate class="form-control dss-border"
+                            min="{{this.provider.companyinfo.finyear.fdt | date: 'yyyy-MM-dd'}}"
+                            max="{{this.provider.companyinfo.finyear.tdt | date: 'yyyy-MM-dd'}}"
+                            [(ngModel)]="entity.currentDate">
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-2">
+                    <button class="btn btn-primary me-2" (click)="showRecord()">Show</button>
+
+                    <button class="btn btn-primary me-2 shadow-none" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasRight">
+                        <i class="bi bi-file-break-fill"></i>
+                    </button>
+                    <button class="btn shadow-none" (click)="close()">
+                        <i class="bi bi-x-lg h5"></i>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card-body p-0" style="height: calc(100vh - 200px);overflow-y: scroll;">
+
+
+            <div class="row m-0 w-100 border">
+                <div class="col col-sm-8 p-2 text-start border-rightm">
+                    <b> Account Description</b>
+                </div>
+                <div class="col col-sm-2  p-2 text-end border-rightm">
+                    <b> Capital and Liabilty</b>
+                </div>
+                <div class="col col-sm-2 p-2 text-end">
+                    <b> Assets</b>
+                </div>
+            </div>
+            <div class="row m-0 w-100 border">
+                <div class="col col-sm-8 p-2 text-center border-rightm">
+                    <div class="form-group">
+                        <input class="form-control form-control-sm w-100" name="accdc" [(ngModel)]="reference.accdc"
+                            (input)="search($event)">
+                    </div>
+                </div>
+
+                <div class="col col-sm-2  p-2 text-center border-rightm">
+                    <input class="form-control form-control-sm w-100" name="dbt" [(ngModel)]="reference.dbt"
+                        (input)="search($event)">
+                </div>
+
+                <div class="col col-sm-2 p-2 text-center">
+                    <input class="form-control form-control-sm w-100" name="cdt" [(ngModel)]="reference.cdt"
+                        (input)="search($event)">
+                </div>
+            </div>
+            <div *ngFor="let item of list | myFilter : searchfield;let i = index">
+                <div class="row  m-0 w-100 border" data-bs-toggle="collapse" [attr.href]="'#Id'+i" role="button"
+                    aria-expanded="false" aria-controls="collapseExample">
+                    <div class="d-none .d-sm-inline d-lg-inline d-md-inline col-sm-1 d-flex align-items-center">
+                        <button class="btn shadow-none muui">
+                            <i [class]="myclass"></i>
+                        </button>
+
+                    </div>
+
+                    <div class="col-7 col-sm-7 p-2 text-left border-rightm overflow-auto">
+                        {{item.sg_name}}
+                    </div>
+                    <div class="col-2 col-sm  p-2 text-end border-rightm">
+                        {{item.debit | number:'1.2-2'}}
+                    </div>
+                    <div class="col-2 col-sm p-2 text-end">
+                        {{item.credit | number:'1.2-2'}}
+                    </div>
+                </div>
+
+                <div class="collapse" [attr.id]="'Id'+i">
+                    <div class="card card-body tableFixHead">
+
+                        <table class="table table-bordered" style="width: 60%;">
+                            <thead style="background-color: coral;padding-right: 8px;">
+                                <tr>
+                                    <th>Account</th>
+                                    <th>Credit</th>
+                                    <th>Debit</th>
+                                </tr>
+                            </thead>
+                            <tbody class="border-top-0" style="max-height: 400px;">
+                                <tr *ngFor="let v of item.account" class="p-2">
+                                    <td>{{v.acc_name}}</td>
+                                    <td class="text-end">{{v.cramt | number:'1.2-2'}}</td>
+                                    <td class="text-end"> {{v.dramt | number:'1.2-2'}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- *ngIf="screenwidth()" -->
+ 
+        <div class="card-footer text-end" style="z-index: 1;" >
+            <div class="row pe-2">
+                <div class="col col-sm-8 p-2 text-end border-rightm">
+                    Total
+                </div>
+                <div class="col col-sm-2  p-2 text-end border-rightm">
+                    <b> {{debit | number:'1.2-2'}}</b>
+                </div>
+                <div class="col col-sm-2 p-2 text-end">
+                    <b> {{credit | number:'1.2-2'}}</b>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="card-body p-0 pb-5" style="height: calc(100vh - 200px);overflow-y: scroll;" *ngIf="!screenwidth()">
+
+
+            <div class="card" *ngFor="let item of list">
+                <div class="card-body">
+                    <h4>{{item.sg_name}}</h4>
+                    <div class="row  m-0">
+                        <div class="col-6 text-end border-end">Liabilty</div>
+                        <div class="col-6 text-end">Assets</div>
+                        <div class="col-6 text-end border-end"><b> {{item.debit | number:'1.2-2'}}</b></div>
+                        <div class="col-6 text-end"><b> {{item.credit | number:'1.2-2'}}</b> </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer fixed-bottom pb-3" *ngIf="!screenwidth()">
+            <div class="row  bg-light">
+              
+                <div class="col-6 p-2  d-flex">
+                  Debit:  <b> {{debit | number:'1.2-2'}}</b>
+                </div>
+                <div class="col-6 p-2 d-flex">
+                   Credit: <b> {{credit | number:'1.2-2'}}</b>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+
+
+
+<app-rdlcviewer [trustedUrl]="entity.url" [params]="entity.params" [ison]="true" *ngIf="mode" (closemodalfn)="onclose($event)">
+</app-rdlcviewer>
+
+
+
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel">Balance Sheet</h5>
+        <button type="button" class="btn-close text-reset" id="offcanvase" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
+        <select class="form-select" [(ngModel)]="entity.reportType">
+            <option value="2">Horizontal</option>
+            <option value="1">Vertical</option>
+        </select>
+        <br>
+        <div class="text-center">
+            <button class="btn btn-primary" (click)="printReport()">Print</button>
+        </div>
+    </div>
+</div>

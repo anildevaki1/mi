@@ -1,0 +1,82 @@
+<div class="card rounded-0" *ngIf="!mode">
+    <div class="card-header py-1 px-1 rounded-0 card-header-smash">
+        <div class="row">
+            <div class="col-12 col-sm-7 d-flex align-items-center">
+                <h5> Trial Balance</h5>
+            </div>
+            <div class="col-12 col-sm-2 offset-lg-1">
+                <div class="form-group">
+                    <input type="date" finDate class="form-control dss-border"
+                        min="{{this.provider.companyinfo.finyear.fdt | date: 'yyyy-MM-dd'}}"
+                        max="{{this.provider.companyinfo.finyear.tdt | date: 'yyyy-MM-dd'}}"
+                        [(ngModel)]="entity.currentDate" (change)="entity.e_dt=entity.currentDate">
+                </div>
+            </div>
+            <div class="col-12 col-sm-2">
+                <button class="btn btn-primary me-2" (click)="showData()">Show</button>
+
+                <button class="btn btn-primary me-2 shadow-none" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight">
+                    <i class="bi bi-file-break-fill"></i>
+                </button>
+
+                <button class="btn shadow-none" (click)="close()">
+                    <i class="bi bi-x-lg h5"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card-body p-0">
+
+        <ag-grid-angular #agGrid style="width: 100%; height:calc(100vh - 145px)" class="ag-theme-alpine"
+            [rowData]="list" [columnDefs]="columns" [defaultColDef]="defaultColDef" [pagination]="true"
+            [paginationPageSize]="10" (gridReady)="onGridReady($event)">
+        </ag-grid-angular>
+
+    </div>
+</div>
+
+<app-rdlcviewer [trustedUrl]="entity.url" [ison]="true"  [params]="entity.params" *ngIf="mode" (closemodalfn)="onclose($event)">
+</app-rdlcviewer>
+
+
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel">Trial Balance</h5>
+        <button type="button" class="btn-close text-reset" id="offcanvase" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
+        <div class="form-group mb-2">
+            <div class="label">From Date</div>
+            <input type="date" finDate class="form-control" [(ngModel)]="entity.s_dt">
+        </div>
+
+
+        <div class="form-group mb-2">
+            <div class="label">To Date</div>
+            <input type="date" finDate class="form-control" [(ngModel)]="entity.e_dt">
+        </div>
+
+
+        <div class="form-group mb-2">
+            <br>
+            <select class="form-select" [(ngModel)]="entity.reportMode">
+                <option value="1">Summary</option>
+                <option value="2">Detailed</option>
+            </select>
+        </div>
+
+
+
+        <br>
+        <div class="text-center">
+            <button class="btn btn-primary" (click)="print()">Print</button>
+        </div>
+    </div>
+
+</div>

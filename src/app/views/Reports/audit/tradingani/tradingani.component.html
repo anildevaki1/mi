@@ -1,0 +1,113 @@
+<div class="container-fluid" *ngIf="!mode">
+    <div class="card rounded-0">
+        <div class="card-header d-flex justify-content-between align-items-center py-1 px-1 rounded-0 card-header-smash">
+            <h5>Trading Analysis</h5>
+            <button class="btn shadow-none" (click)="close()">
+                <i class="bi bi-x-lg h5"></i>
+            </button>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-12 col-sm-6 border-end">
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <div class="from-group">
+                                <label for="">From Date</label>
+                                <input type="date" finDate class="form-control" min="{{this.provider.companyinfo.finyear.fdt | date: 'yyyy-MM-dd'}}" max="{{this.provider.companyinfo.finyear.tdt | date: 'yyyy-MM-dd'}}" [(ngModel)]="entity.sdt">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="from-group">
+                                <label for="">To Date</label>
+                                <input type="date" finDate  class="form-control" min="{{this.provider.companyinfo.finyear.fdt | date: 'yyyy-MM-dd'}}" max="{{this.provider.companyinfo.finyear.tdt | date: 'yyyy-MM-dd'}}" [(ngModel)]="entity.edt">
+                            </div>
+                        </div>
+                    </div>
+                     
+                    <div class="from-group">
+                        <label for="">Type of Goods</label>
+                        <select class="form-select" name="" id="" [(ngModel)]="entity.tom">
+                            <option *ngFor="let item of reference.toms" [value]="item.tom_id">{{item.tom_nm}}</option>
+                        </select>
+                    </div>
+        
+        
+                    <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <div class="form_group">
+                                    <label for="AsOn">
+                                        Group
+                                    </label>
+                                    <ng-select [items]="reference.group" bindLabel="grp_name" bindValue="grp_code"
+                                        (change)="getiGroup($event)" [(ngModel)]="entity.grp_code"></ng-select>
+                                </div>
+                            </div>
+                        
+                        
+                            <div class="col-12 col-sm-6">
+                                <label for="title">Manufacturer</label>
+                                <ng-select [items]="reference.mfgr" 
+                                bindLabel="mfgr_name"  
+                                bindValue="mfgr_code" (change)="getiGroup($event)" [(ngModel)]="entity.mfgr_code"></ng-select>
+                            </div>
+                
+                    </div>
+                    
+                </div>
+                <div class="col-12 col-sm-6">
+                        <div class="from-group">
+                            <label for="">Display Qty in</label>
+                            <select name="" class="form-select" id="" [(ngModel)]="entity.utp">
+
+                                <option *ngFor="let item of units" [value]="item.cd">{{item.nm}}</option>
+
+                            </select>
+                        </div>
+                        <br>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"  [(ngModel)]="entity.mergeAllFirm">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Merge All Firms
+                            </label>
+                          </div>
+                          <br>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [(ngModel)]="entity.showOwnAcc">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Exclude Own Accounts Sale/Purchase
+                            </label>
+                          </div>
+                          <br>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [(ngModel)]="entity.showBranch">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Exclude  Branch sale/Purchase
+                            </label>
+                          </div>
+                          <br>
+                           <div class="row">
+                               <div class="col-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Report</label>
+                                    <select name="" class="form-select" id="" [(ngModel)]="entity.repTyp">
+                                        <option value="" *ngFor="let item of Report" [value]="item.cd">{{item.nm}}</option>
+                                    </select>
+                                </div>
+                               </div>
+                               <div class="col-12 col-sm-12">
+                                <button class="btn btn-primary float-end" (click)="show()"> Show</button>
+                               </div>
+
+                           </div>
+                          
+                          
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+<app-rdlcviewer [trustedUrl]="entity.url" [ison]="true"  [params]="entity.params" *ngIf="mode" (closemodalfn)="onclose($event)"></app-rdlcviewer>
