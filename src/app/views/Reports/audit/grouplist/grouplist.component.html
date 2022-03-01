@@ -8,7 +8,7 @@
                     <h5 class="ps-1">Group List</h5>
                 </div>
                  
-                <div class="col-12 col-sm-4 pe-1">
+                <div class="col-12 col-sm-3 pe-1">
                     <div class="input-group dss-border">
                         <span class="input-group-text rounded-0 dss-border-end">Group</span>
 
@@ -58,6 +58,10 @@
                             <button class="btn btn-primary me-2 shadow-none" data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasRight">
                             <i class="bi bi-file-break-fill"></i>
+                        </button>
+
+                        <button class="btn" (click)="ngOnInit()">
+                            <i class="bi bi-arrow-clockwise h4"></i>
                         </button>
 
                         <button class="btn shadow-none" (click)="close()">

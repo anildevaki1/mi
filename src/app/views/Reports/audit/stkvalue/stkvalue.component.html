@@ -7,7 +7,7 @@
                     <div class="col-12 col-lg-3 col-md-4 d-flex align-items-center">
                         <h5>Stock valuation</h5>
                     </div>
-                    <div class="col-12 col-lg-4 offset-lg-5">
+                    <div class="col-12 col-lg-5 offset-lg-4">
 
                         <div class="row m-0">
                             <div class="col-12 col-lg-6">
@@ -20,7 +20,7 @@
                                         >
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6">
+                            <div class="col-12 col-lg-6 text-end">
                                 <button class="btn btn-primary shadow-none me-2 shadow-none" (click)="showRecord()">
                                     Show
                                 </button>
@@ -29,6 +29,11 @@
                                     data-bs-target="#offcanvasRight">
                                     <i class="bi bi-file-break-fill"></i>
                                 </button>
+
+                                <button class="btn" (click)="ngOnInit()">
+                                    <i class="bi bi-arrow-clockwise h4"></i>
+                                </button>
+
                                 <button class="btn shadow-none shadow_none" (click)="close()">
                                     <i class="bi bi-x-lg h5"></i>
                                 </button>

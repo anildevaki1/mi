@@ -72,7 +72,7 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
     this.spinner.show();
     this.http.get('outstd/debtorsAge', params).subscribe({
       next: (res) => {
-        this.entity.opbl = 0;
+        
         this.entity.d5total = 0;
         this.entity.d4total = 0;
         this.entity.d3total = 0;
@@ -80,8 +80,8 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
         this.entity.d1total = 0;
         this.entity.d0total = 0;
         res.branch_outstd.forEach((element, i) => {
-          res.branch_outstd[i].htotal = element.opbl + element.d5 + element.d4 + element.d3 + element.d2 + element.d1 + element.d0
-          this.entity.opbl += element.opbl
+          res.branch_outstd[i].htotal =  element.d5 + element.d4 + element.d3 + element.d2 + element.d1 + element.d0
+          
           this.entity.d5total += element.d5
           this.entity.d4total += element.d4
           this.entity.d3total += element.d3
@@ -169,8 +169,14 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
     })
 
     promis.then(() => {
-      this.entity.debtorsOutstanding = ore;
-      this.entity.debtorsOutstandingdetls = ore;
+
+      var Are = {
+        age: ore.age.reverse(),
+        branch_outstd: ore.branch_outstd
+      }
+
+      this.entity.debtorsOutstanding = Are;
+      this.entity.debtorsOutstandingdetls = Are;
 
       this.maxtotalv()
     })
@@ -181,7 +187,7 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
   maxtotalv() {
     this.maxtotal = 0;
 
-    this.maxtotal = this.entity.opbl + this.entity.d5total + this.entity.d4total + this.entity.d3total + this.entity.d2total + this.entity.d1total + this.entity.d0total;
+    this.maxtotal =   this.entity.d5total + this.entity.d4total + this.entity.d3total + this.entity.d2total + this.entity.d1total + this.entity.d0total;
   }
 
   close() {
@@ -189,7 +195,7 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
   }
 
   details(item) {
-    this.entity.ddopbl = 0;
+     
     this.entity.dd5total = 0;
     this.entity.dd4total = 0;
     this.entity.dd3total = 0;
@@ -200,9 +206,9 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
     this.entity.itemdetltitle = item.branch_name;
 
     item.outstd.forEach((element, i) => {
-      item.outstd[i].dhtotal = element.opbl + element.d5 + element.d4 + element.d3 + element.d2 + element.d1 + element.d0
+      item.outstd[i].dhtotal =   element.d5 + element.d4 + element.d3 + element.d2 + element.d1 + element.d0
 
-      this.entity.ddopbl += element.opbl;
+      
       this.entity.dd5total += element.d5;
       this.entity.dd4total += element.d4;
       this.entity.dd3total += element.d3;
@@ -214,7 +220,7 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
     this.entity.debtorsOutstandingdetls.data = item.outstd;
 
     this.dmaxhtotal = 
-    item.opbl+
+     
     item.d5+
     item.d4+
     item.d3+

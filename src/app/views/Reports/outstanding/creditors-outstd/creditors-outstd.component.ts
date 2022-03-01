@@ -55,7 +55,7 @@ export class CreditorsOutstdComponent implements OnInit, AfterViewInit {
       div_id: this.companyinfoarray.selectedbranch.div_id,
       from_date: this.datepipe.transform(this.entity.sdt, 'yyyy-MM-dd'),
       to_date: this.datepipe.transform(this.entity.edt, 'yyyy-MM-dd'),
-      sg_code: this.entity.sg_code ? this.entity.sg_code  : ''
+      sg_code: this.entity.sg_code ? this.entity.sg_code : ''
     }
 
     this.spinner.show();
@@ -72,7 +72,7 @@ export class CreditorsOutstdComponent implements OnInit, AfterViewInit {
         this.entity.d0total = 0;
         res.branch_outstd.forEach((element, i) => {
           res.branch_outstd[i].htotal = element.opbl + element.d5 + element.d4 + element.d3 + element.d2 + element.d1 + element.d0
-          this.entity.opbl += element.opbl
+
           this.entity.d5total += element.d5
           this.entity.d4total += element.d4
           this.entity.d3total += element.d3
@@ -162,9 +162,12 @@ export class CreditorsOutstdComponent implements OnInit, AfterViewInit {
     })
 
     promis.then(() => {
-
-      this.entity.creditorsOutstanding = ore;
-      this.entity.creditorsOutstandingdetls = ore;
+      var Are = {
+        age: ore.age.reverse(),
+        branch_outstd: ore.branch_outstd
+      }
+      this.entity.creditorsOutstanding = Are;
+      this.entity.creditorsOutstandingdetls = Are;
       this.maxtotalv();
     })
 
@@ -173,12 +176,12 @@ export class CreditorsOutstdComponent implements OnInit, AfterViewInit {
 
   maxtotalv() {
     this.maxtotal = 0;
-    
-    this.maxtotal = this.entity.opbl + this.entity.d5total + this.entity.d4total + this.entity.d3total + this.entity.d2total + this.entity.d1total + this.entity.d0total;
+
+    this.maxtotal = this.entity.d5total + this.entity.d4total + this.entity.d3total + this.entity.d2total + this.entity.d1total + this.entity.d0total;
   }
 
   details(item) {
-    this.entity.ddopbl = 0;
+
     this.entity.dd5total = 0;
     this.entity.dd4total = 0;
     this.entity.dd3total = 0;
@@ -191,7 +194,7 @@ export class CreditorsOutstdComponent implements OnInit, AfterViewInit {
     item.outstd.forEach((element, i) => {
       item.outstd[i].dhtotal = element.opbl + element.d5 + element.d4 + element.d3 + element.d2 + element.d1 + element.d0
 
-      this.entity.ddopbl += element.opbl
+
       this.entity.dd5total += element.d5
       this.entity.dd4total += element.d4
       this.entity.dd3total += element.d3
@@ -201,9 +204,9 @@ export class CreditorsOutstdComponent implements OnInit, AfterViewInit {
     })
 
     this.entity.creditorsOutstandingdetls.data = item.outstd;
- 
-    this.dmaxhtotal = item.opbl+ item.d5 + item.d4 + item.d3 + item.d2 + item.d1 + item.d0;
-    
+
+    this.dmaxhtotal = item.d5 + item.d4 + item.d3 + item.d2 + item.d1 + item.d0;
+
     this.mode = 1;
   }
 
@@ -215,9 +218,8 @@ export class CreditorsOutstdComponent implements OnInit, AfterViewInit {
   setting() {
     $('#settingb').modal('show');
   }
- 
-  exporttoexl()
-  {
+
+  exporttoexl() {
     let element = document.getElementById('crdtOutRpt');
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
 

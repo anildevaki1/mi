@@ -1,7 +1,7 @@
 <div class="card rounded-0" *ngIf="!mode">
     <div class="card-header py-1 px-1 rounded-0 card-header-smash">
         <div class="row">
-            <div class="col-12 col-sm-7 d-flex align-items-center">
+            <div class="col-12 col-sm-6 d-flex align-items-center">
                 <h5> Trial Balance</h5>
             </div>
             <div class="col-12 col-sm-2 offset-lg-1">
@@ -12,7 +12,7 @@
                         [(ngModel)]="entity.currentDate" (change)="entity.e_dt=entity.currentDate">
                 </div>
             </div>
-            <div class="col-12 col-sm-2">
+            <div class="col-12 col-sm-3 text-end">
                 <button class="btn btn-primary me-2" (click)="showData()">Show</button>
 
                 <button class="btn btn-primary me-2 shadow-none" data-bs-toggle="offcanvas"
@@ -20,6 +20,9 @@
                     <i class="bi bi-file-break-fill"></i>
                 </button>
 
+                <button class="btn" (click)="ngOnInit()">
+                    <i class="bi bi-arrow-clockwise h4"></i>
+                </button>
                 <button class="btn shadow-none" (click)="close()">
                     <i class="bi bi-x-lg h5"></i>
                 </button>

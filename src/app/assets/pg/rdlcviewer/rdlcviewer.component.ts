@@ -1,5 +1,5 @@
 import { Component, OnInit,Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
-import { DomSanitizer} from '@angular/platform-browser'
+import {SafeResourceUrl, DomSanitizer} from '@angular/platform-browser'
 
 import { MyProvider } from '../../services/provider';
 import {formatDate} from '@angular/common';
@@ -29,11 +29,11 @@ export class RdlcviewerComponent   implements  OnInit,AfterViewInit {
   @Input() ison:boolean;
 
   @Output() closemodalfn = new EventEmitter<boolean>();
-  rpturl:any;
+  rpturl:SafeResourceUrl;
   currentdate;
   bsspinner:boolean=false;
   constructor(public provider: MyProvider,
-              private sanitizer: DomSanitizer,
+               private sanitizer: DomSanitizer,
             
               ) {}
 

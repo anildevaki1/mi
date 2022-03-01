@@ -6,7 +6,7 @@
                 <div class="col-12 col-lg-3 col-md-4 d-flex align-items-center">
                     <h5>Trading & Mfgr</h5>
                 </div>
-                <div class="col-12 col-lg-4 offset-lg-5">
+                <div class="col-12 col-lg-5 offset-lg-4">
 
                     <div class="row m-0">
                         <div class="col-12 col-lg-6">
@@ -14,7 +14,7 @@
                                 <input type="date" class="form-control dss-border" finDate min="{{this.provider.companyinfo.finyear.fdt | date: 'yyyy-MM-dd'}}" max="{{this.provider.companyinfo.finyear.tdt | date: 'yyyy-MM-dd'}}" [(ngModel)]="entity.currentDate">
                             </div>
                         </div>
-                        <div class="col-12 col-lg-6">
+                        <div class="col-12 col-lg-6 text-end">
                             <button class="btn btn-primary shadow-none me-2 shadow-none" (click)="showRecord()">
                                 Show
                             </button>
@@ -22,6 +22,9 @@
                             <button class="btn btn-primary me-2 shadow-none" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasRight">
                                 <i class="bi bi-file-break-fill"></i>
+                            </button>
+                            <button class="btn" (click)="ngOnInit()">
+                                <i class="bi bi-arrow-clockwise h4"></i>
                             </button>
                             <button class="btn shadow-none shadow_none" (click)="close()">
                                 <i class="bi bi-x-lg h5"></i>
