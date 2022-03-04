@@ -1,13 +1,16 @@
 import { DatePipe } from '@angular/common';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { NgxSpinnerService } from 'ngx-spinner';
+import { fromEvent } from 'rxjs';
 import { DialogsComponent } from 'src/app/assets/pg/dialogs/dialogs.component';
 import { MyProvider } from 'src/app/assets/services/provider';
 import { http } from 'src/app/assets/services/services';
 import * as XLSX from 'xlsx';
 declare var $: any;
+
+
 
 @Component({
   selector: 'app-debtors-outstd',
@@ -15,6 +18,8 @@ declare var $: any;
   styleUrls: ['./debtors-outstd.component.scss']
 })
 export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
+  @ViewChild('myb') myb: ElementRef;
+
   entity: any = {};
   data: any = {};
   catogories = []
@@ -24,7 +29,8 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
   total = 0;
   maxtotal = 0;
   dmaxhtotal = 0;
-
+  sort: any;
+  meee: boolean = true;
   constructor(
     public http: http,
     public router: Router,
@@ -37,6 +43,10 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
     this.entity.sdt = this.datepipe.transform(this.companyinfoarray.finyear.fdt, 'yyyy-MM-dd');
     this.entity.edt = this.datepipe.transform(this.companyinfoarray.finyear.tdt, 'yyyy-MM-dd');
 
+
+
+
+
   }
 
   ngOnInit(): void {
@@ -44,6 +54,8 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
     this.entity.debtorsOutstandingdetls = {};
     this.entity.debtorsOutstandingdetls.data = [];
     this.reference.groupList = [];
+    this.reference.fields = ["d5", "d4", "d3", "d2", "d1", "d0"];
+    this.reference.fields.reverse();
     //getDebtorsoutStanding List
 
 
@@ -72,16 +84,17 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
     this.spinner.show();
     this.http.get('outstd/debtorsAge', params).subscribe({
       next: (res) => {
-        
+
         this.entity.d5total = 0;
         this.entity.d4total = 0;
         this.entity.d3total = 0;
         this.entity.d2total = 0;
         this.entity.d1total = 0;
         this.entity.d0total = 0;
+
         res.branch_outstd.forEach((element, i) => {
-          res.branch_outstd[i].htotal =  element.d5 + element.d4 + element.d3 + element.d2 + element.d1 + element.d0
-          
+          res.branch_outstd[i].htotal = element.d5 + element.d4 + element.d3 + element.d2 + element.d1 + element.d0
+
           this.entity.d5total += element.d5
           this.entity.d4total += element.d4
           this.entity.d3total += element.d3
@@ -100,6 +113,15 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
         this.dialog.swal({ dialog: 'error', title: 'Error', message: err })
       }
     })
+
+    // $('table').dataTable( {
+    //   "order": [[ 3, "asc" ]]
+    // } );
+  }
+
+  sorting(s) {
+
+
   }
 
   getActGroup() {
@@ -141,29 +163,34 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
   }
 
   mats(ore) {
+
     var data = JSON.parse(this.data)
 
     var promis = new Promise<void>((resolve, rejects) => {
 
       var v = ore.age.length + 1;
+      
+        for (let b = 0; b < v; b++) {
+         
 
-      for (let b = 0; b < v; b++) {
-        if (b == 0) {
+          if (b == 0) {
 
-          ore.age[b] = 0 + "-" + ore.age[b];
-
-        } else {
-          if (b != ore.age.length) {
-
-            ore.age[b] = (parseInt(data[b - 1]) + 1) + "-" + data[b];
+            ore.age[b] = { head: 0 + "-" + ore.age[b], field: this.reference.fields[b] };
 
           } else {
+            if (b != ore.age.length) {
 
-            ore.age[b] = (parseInt(data[b - 1]) + 1) + " Above";
+              ore.age[b] = { head: (parseInt(data[b - 1]) + 1) + "-" + data[b], field: this.reference.fields[b] };
+
+            } else {
+
+              ore.age[b] = { head: (parseInt(data[b - 1]) + 1) + " Above", field: this.reference.fields[b] };
+            }
           }
-        }
-      }
 
+        }
+      
+      
       resolve();
 
     })
@@ -178,6 +205,8 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
       this.entity.debtorsOutstanding = Are;
       this.entity.debtorsOutstandingdetls = Are;
 
+      console.log(Are);
+
       this.maxtotalv()
     })
 
@@ -187,7 +216,7 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
   maxtotalv() {
     this.maxtotal = 0;
 
-    this.maxtotal =   this.entity.d5total + this.entity.d4total + this.entity.d3total + this.entity.d2total + this.entity.d1total + this.entity.d0total;
+    this.maxtotal = this.entity.d5total + this.entity.d4total + this.entity.d3total + this.entity.d2total + this.entity.d1total + this.entity.d0total;
   }
 
   close() {
@@ -195,7 +224,7 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
   }
 
   details(item) {
-     
+
     this.entity.dd5total = 0;
     this.entity.dd4total = 0;
     this.entity.dd3total = 0;
@@ -206,9 +235,9 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
     this.entity.itemdetltitle = item.branch_name;
 
     item.outstd.forEach((element, i) => {
-      item.outstd[i].dhtotal =   element.d5 + element.d4 + element.d3 + element.d2 + element.d1 + element.d0
+      item.outstd[i].dhtotal = element.d5 + element.d4 + element.d3 + element.d2 + element.d1 + element.d0
 
-      
+
       this.entity.dd5total += element.d5;
       this.entity.dd4total += element.d4;
       this.entity.dd3total += element.d3;
@@ -219,14 +248,14 @@ export class DebtorsOutstdComponent implements OnInit, AfterViewInit {
 
     this.entity.debtorsOutstandingdetls.data = item.outstd;
 
-    this.dmaxhtotal = 
-     
-    item.d5+
-    item.d4+
-    item.d3+
-    item.d2+
-    item.d1+
-    item.d0;
+    this.dmaxhtotal =
+
+      item.d5 +
+      item.d4 +
+      item.d3 +
+      item.d2 +
+      item.d1 +
+      item.d0;
 
     this.mode = 1;
   }

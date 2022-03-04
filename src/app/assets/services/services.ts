@@ -14,12 +14,15 @@ export class AuthGuardservice implements CanActivate {
 
   constructor(private provider: MyProvider, public router: Router) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-   
+  canActivate(route: ActivatedRouteSnapshot) {
+          
     if (!this.provider.companyinfo.user.access_token) {
-      this.router.navigate(['']);
+ 
+      this.router.navigate(['/']);
       return false;
-    }else{
+       
+    }else{ 
+       
       return true;
     }
 

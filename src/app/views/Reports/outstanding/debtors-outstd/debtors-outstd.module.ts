@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DebtorsOutstdComponent } from './debtors-outstd.component';
 import { MydirectiveModule } from 'src/app/assets/directive/mydirective.module';
 
-
+ 
 const routes: Routes = [
   {
     path: '',
@@ -17,6 +17,7 @@ const routes: Routes = [
   declarations: [DebtorsOutstdComponent],
   imports: [
     CommonModule,
+   
     MydirectiveModule,
     RouterModule.forChild(routes)
   ]

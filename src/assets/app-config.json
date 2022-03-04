@@ -1,5 +1,7 @@
 
-{
-    "api": "http://localhost:63625",
-    "ssrs": "http://localhost:62668"
- }
+
+ {
+    "api": "https://kgscoop.co.in/whtms.api",
+    "ssrs": "https://kgscoop.co.in/whtms.ssrs"
+}
+

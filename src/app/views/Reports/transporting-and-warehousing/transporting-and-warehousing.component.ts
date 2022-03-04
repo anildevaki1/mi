@@ -18,9 +18,10 @@ export class TransportingAndWarehousingComponent implements OnInit {
   url;
   selectedbranch;
   mode: boolean = true;
-  constructor(public provider: MyProvider,public router:Router, public datepipe: DatePipe, public http: http, public spinner: NgxSpinnerService, public dialog: DialogsComponent) { }
+  constructor(public provider: MyProvider, public router: Router, public datepipe: DatePipe, public http: http, public spinner: NgxSpinnerService, public dialog: DialogsComponent) { }
 
   ngOnInit(): void {
+
     this.reference.company = [];
     this.selectedbranch = this.provider.companyinfo;
     this.entity.sdt = this.datepipe.transform(this.selectedbranch.finyear.fdt, 'yyyy-MM-dd');
@@ -39,7 +40,7 @@ export class TransportingAndWarehousingComponent implements OnInit {
         this.reference.company.unshift({ cmp_code: '', cmp_name: '[All]' })
 
         this.spinner.hide();
-        
+
       }, error:
         (err) => {
           this.spinner.hide();
@@ -49,23 +50,29 @@ export class TransportingAndWarehousingComponent implements OnInit {
   }
 
 
-  close()
-  {
+  close() {
     this.router.navigate(['home']);
   }
 
 
   print() {
+
+    this.mode = false;
+
+
     this.url = "Reports/candf/own/pages/twsAnlys";
 
     this.params = [
-     {key: 'firm_id', value: this.selectedbranch.selectedbranch.firm_id ?this.selectedbranch.selectedbranch.firm_id : '' },
-     {key: 'branch_id', value: this.selectedbranch.selectedbranch.branch_id ? this.selectedbranch.selectedbranch.branch_id: ''},
-     {key: 'sdt', value: this.entity.sdt},
-     {key: 'edt', value: this.entity.edt},
-     {key: 'cmp_code', value: this.entity.cmp}
+      { key: 'firm_id', value: this.selectedbranch.selectedbranch.firm_id ? this.selectedbranch.selectedbranch.firm_id : '' },
+      { key: 'branch_id', value: this.selectedbranch.selectedbranch.branch_id ? this.selectedbranch.selectedbranch.branch_id : '' },
+      { key: 'sdt', value: this.entity.sdt },
+      { key: 'edt', value: this.entity.edt },
+      { key: 'cmp_code', value: this.entity.cmp }
 
     ]
-    this.mode = true;
+
+    setTimeout(() => {
+      this.mode = true;
+    }, 2000)
   }
 }

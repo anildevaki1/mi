@@ -12,6 +12,7 @@ import {
   minmaxDirective,
   noWhiteSpaceDirective,
   NumberOnlyDirective,
+  SortDirective,
   SpecialwithnumDirective,
   UppercaseDirective
 } from './mydirective.directive';
@@ -22,7 +23,7 @@ import { FormsModule } from '@angular/forms';
 import { UiSwitchModule } from 'ngx-ui-switch';
 import { NgxPaginationModule } from 'ngx-pagination'; 
 
-import { CompressImageService, Master } from '../services/services';
+import { AuthGuardservice, CompressImageService, Master } from '../services/services';
 import {NgxImageCompressService} from 'ngx-image-compress';  
 import {MatButtonModule} from '@angular/material/button';  
 import {MatCardModule} from '@angular/material/card';
@@ -38,8 +39,7 @@ import { HelperComponent } from '../pg/helper/helper.component';
 import { DialogsModule } from '../pg/dialogs/dialogs.module';
 import { ButtonRendererComponent } from '../pg/btn-cell-renderer/btn-cell-renderer.component';
 import { DialogsComponent } from '../pg/dialogs/dialogs.component';
-
-
+ 
 const array = [
   NavbarComponent,
   RdlcviewerComponent,
@@ -47,6 +47,7 @@ const array = [
   InrcrdrPipe,
   ArraySortPipe,
   dssDate,
+  SortDirective,
   HelperComponent,
   SpecialwithnumDirective,
    minmaxDirective,
@@ -82,7 +83,8 @@ const array = [
    SimpleModalModule.forRoot({ container: document.body }),
     UiSwitchModule,
     NgxChartsModule,
-    MatCardModule
+    MatCardModule,
+     
   ],
   providers:[
     CompressImageService,
@@ -91,14 +93,17 @@ const array = [
      DialogsComponent,
     InrcrdrPipe,
     Master,
+    SortDirective,
     DecimalPipe,
     ArraySortPipe,
     DatePipe,
     CurrencyPipe,
+    AuthGuardservice,
     { provide: LOCALE_ID, useValue: "en-IN" }
   ],
   exports: [
-    array,  
+    array,
+    
     NgxPaginationModule,
     NgSelectModule,
     TestFilterPipe,
@@ -110,6 +115,7 @@ const array = [
     InrcrdrPipe,
     DecimalPipe,
     NgxChartsModule,
+    
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

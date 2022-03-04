@@ -10,6 +10,7 @@ import {
 } from '@angular/common';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { MyProvider } from '../../assets/services/provider';
+import { Sort } from '../sort';
 
 @Directive({
   selector: '[nospecialChar]'
@@ -392,4 +393,51 @@ export class finDateDirective {
   }
 }
 
+
+
+@Directive({
+  selector: '[appSort]'
+})
+export class SortDirective {
+
+  @Input() appSort: Array<any>;
+
+  @Input() dataName:string;
+  constructor(private renderer: Renderer2, private targetElement: ElementRef) { }
+
+  @HostListener("click")
+  sortData() {
+     
+    var sort = new Sort();
+    
+    var elem = this.targetElement.nativeElement;
+
+         var b:any =document.getElementsByClassName('bi bi-arrow-up');
+            
+         if(b.length > 0){
+         
+         b[0].className='bi bi-arrow-down';
+         
+         }
+         
+    var order = elem.getAttribute("data-order");
+
+    var type = elem.getAttribute("data-type");
+   
+   
+    elem.firstElementChild.className= order=='asc' ? "bi bi-arrow-up" :"bi bi-arrow-down";
+
+    var property =  this.dataName;
+
+    if (order === "desc") {
+      this.appSort.sort(sort.startSort(property, order, type));
+      elem.setAttribute("data-order", "asc");
+    } else {
+      this.appSort.sort(sort.startSort(property, order, type));
+      elem.setAttribute("data-order", "desc");
+    }
+
+  }
+
+}
 

@@ -28,10 +28,8 @@
                 
             </div>
             
-            <div class="col-2 col-sm-2 offset-sm-1 text-end">
-                <button class="btn" (click)="ngOnInit()">
-                    <i class="bi bi-arrow-clockwise h4"></i>
-                </button>
+            <div class="col-2 col-sm-1 offset-sm-2 text-end">
+                 
                 <button class="btn shadow-none" (click)="close()">
                     <i class="bi bi-x-lg h5"></i>
                 </button>
@@ -42,7 +40,7 @@
     </div>
 <div class="card-body p-1">
 
-    <app-rdlcviewer [params]="params" [trustedUrl]="url" [width]="'100%'" [height]="'calc(100vh - 150px)'" [ison]="false"></app-rdlcviewer>
+    <app-rdlcviewer [params]="params" [trustedUrl]="url" [width]="'100%'" [height]="'calc(100vh - 150px)'" *ngIf="mode" [ison]="false"></app-rdlcviewer>
 </div>
     
 </div>

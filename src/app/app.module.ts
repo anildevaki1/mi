@@ -14,6 +14,7 @@ import { MydirectiveModule } from './assets/directive/mydirective.module';
 import { TestFilterPipe } from './assets/pipes/inrcrdr.pipe';
 import { MyProvider } from './assets/services/provider';
 import { AuthGuardservice } from './assets/services/services';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
  
 const appInitializerFn = (MyProvider) => {
   return () => {
@@ -25,6 +26,8 @@ const appInitializerFn = (MyProvider) => {
 const APP_CONTAINERS = [
   ContainerComponent
 ];
+ 
+ 
 
 @NgModule({
   declarations: [
@@ -38,6 +41,7 @@ const APP_CONTAINERS = [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
+    
     MydirectiveModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -45,7 +49,8 @@ const APP_CONTAINERS = [
     
   ],
    
-  providers: [TestFilterPipe,
+  providers: [
+    TestFilterPipe,
     AuthGuardservice,
     {
       provide: APP_INITIALIZER,
@@ -59,4 +64,4 @@ const APP_CONTAINERS = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
+ 

@@ -43,6 +43,8 @@ export class CreditorsOutstdComponent implements OnInit, AfterViewInit {
     this.entity.creditorsOutstandingdetls = {};
     this.entity.creditorsOutstandingdetls.data = [];
     this.reference.groupList = [];
+    this.reference.fields = ["d5", "d4", "d3", "d2", "d1", "d0"];
+    this.reference.fields.reverse();
     //getDebtorsoutStanding List
     this.getActGroup();
   }
@@ -143,16 +145,16 @@ export class CreditorsOutstdComponent implements OnInit, AfterViewInit {
       for (let b = 0; b < v; b++) {
         if (b == 0) {
 
-          ore.age[b] = 0 + "-" + ore.age[b];
+          ore.age[b] = { head:0 + "-" + ore.age[b],field: this.reference.fields[b] };
 
         } else {
           if (b != ore.age.length) {
 
-            ore.age[b] = (parseInt(data[b - 1]) + 1) + "-" + data[b];
+            ore.age[b] = { head:(parseInt(data[b - 1]) + 1) + "-" + data[b],field: this.reference.fields[b] };
 
           } else {
 
-            ore.age[b] = (parseInt(data[b - 1]) + 1) + " Above";
+            ore.age[b] = { head:(parseInt(data[b - 1]) + 1) + " Above",field: this.reference.fields[b] };
           }
         }
       }

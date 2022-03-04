@@ -26,12 +26,18 @@
 
     </div>
     <div class="card-body p-0">
-      <table class="table w-100 table-bordered table-hover" id="crdtOutRpt">
+      <table  class="table w-100 table-bordered table-hover" id="crdtOutRpt">
         <thead class="shadow">
           <tr>
-            <th style="width: 29%;">Branch Name</th>
+            <th style="width: 29%;" #myb [appSort]="entity.creditorsOutstanding.branch_outstd" data-order="asc" [dataName]="'branch_name'">
+              Branch Name
+              <i class="bi bi-arrow-down"></i>
+            </th>
             
-            <th class="text-end" style="width: 10%;" *ngFor="let item of entity.creditorsOutstanding.age">{{item}}</th>
+            <th class="text-end" style="width: 10%;"  #myb [appSort]="entity.creditorsOutstanding.branch_outstd" data-order="asc" [dataName]="item.field" *ngFor="let item of entity.creditorsOutstanding.age">
+              {{item.head}}
+              <i class="bi bi-arrow-down"></i>
+            </th>
             <th class="text-end" style="width: 10%;">Total</th>
 
           </tr>
@@ -96,10 +102,9 @@
         <table class="w-100 table table-bordered table-hover header-fixed">
           <thead class="shadow">
             <tr class="py-1">
-              <th style="width: 30%;" class="d-flex">
-                <span class="me-2">
+              <th style="width: 30%;" #myb [appSort]="entity.creditorsOutstanding.data" data-order="asc" [dataName]="'acc_name'" class="d-flex">
                   Debtors
-                </span>
+                  <i class="bi bi-arrow-down"></i>
                 <div class="input-group has-feedback">
                   <input type="search" class="form-control form-control-sm" [(ngModel)]="entity.search">
                   <i class="input-group-text" style="cursor: pointer;">
@@ -108,8 +113,9 @@
                 </div>
               </th>
              
-              <th class="text-end" style="width: 10%;" *ngFor="let item of entity.creditorsOutstandingdetls.age">
-                {{item}}
+              <th class="text-end" style="width: 10%;" #myb [appSort]="entity.creditorsOutstandingdetls.data" data-order="asc" [dataName]="item.field" *ngFor="let item of entity.creditorsOutstandingdetls.age">
+                {{item.head}}
+                <i class="bi bi-arrow-down"></i>
               </th>
               <th class="text-end" style="width: 10%;">
                 Total
