@@ -13,9 +13,10 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MydirectiveModule } from './assets/directive/mydirective.module';
 import { TestFilterPipe } from './assets/pipes/inrcrdr.pipe';
 import { MyProvider } from './assets/services/provider';
-import { AuthGuardservice } from './assets/services/services';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
- 
+import { AuthGuardservice } from './assets/services/services'; 
+
+
+
 const appInitializerFn = (MyProvider) => {
   return () => {
     return MyProvider.setConfig();
@@ -33,7 +34,7 @@ const APP_CONTAINERS = [
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
-    ContainerComponent
+    ContainerComponent,
     
    ],
   imports: [

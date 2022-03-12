@@ -78,6 +78,10 @@ ngOnInit() {
   Trans_and_Ware(){
     this.router.navigate(['reports/transporting&warehowsing']);
   }
+
+  exption_rpt(){
+    this.router.navigate(['reports/exeption_rpt']);
+  }
  
   navpage(s) {
     // if (this.provider.companyinfo.selectedbranch.firm_id == "") {
@@ -105,5 +109,12 @@ ngOnInit() {
   auditinvalid() {
     this.dialog.swal({ dialog: 'Warning', title: 'Warning', message: 'Please Select the Firm  and try Again...' });
   }
+
+   
+  bdcWithoutSaleInvoice(){}
+  dcWithoutSaleInvoice(){}
+  GRN_Without_Purchace(){}
+  BGRN_Without_Purchace(){}
+  getpasswithoutOutword(){}
  
 }
