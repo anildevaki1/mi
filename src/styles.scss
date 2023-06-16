@@ -1,166 +1,163 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import "~bootstrap-icons/font/bootstrap-icons.css";
-
-@import "~bootstrap/dist/css/bootstrap-table.min.css";
-
+// @import "~bootstrap/dist/css/bootstrap-table.min.css";
 @import "ag-grid-community/dist/styles/ag-grid.css";
 @import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-
 @import "~@ng-select/ng-select/themes/default.theme.css";
-
 @import "~ngx-ui-switch/ui-switch.component.scss";
-
 @import url("https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique:wght@400;700&display=swap");
- 
 * {
-  font-family: "Zen Kaku Gothic Antique", sans-serif;
+    font-family: "Zen Kaku Gothic Antique", sans-serif;
 }
 
-.switch.switch-small > .switch-pane > span {
-  font-size: 11px !important;
+.switch.switch-small>.switch-pane>span {
+    font-size: 11px !important;
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+    width: 5px;
 }
+
 
 /* Track */
+
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+    background: #f1f1f1;
 }
+
 
 /* Handle */
+
 ::-webkit-scrollbar-thumb {
-  background: #888;
+    background: #888;
 }
 
+
 /* Handle on hover */
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+    background: #555;
 }
 
 table.scroll {
-  /* width: 100%; */ /* Optional */
-  /* border-collapse: collapse; */
-  border-spacing: 0;
-  border: 2px solid black;
+    /* width: 100%; */
+    /* Optional */
+    /* border-collapse: collapse; */
+    border-spacing: 0;
+    border: 2px solid black;
 }
 
 table.scroll tbody,
 table.scroll thead {
-  display: block;
+    display: block;
 }
 
 .scroll thead tr th {
-  height: 30px;
-  line-height: 30px;
-  /* text-align: left; */
+    height: 30px;
+    line-height: 30px;
+    /* text-align: left; */
 }
 
 table.scroll tbody {
-  height: 200px;
-  overflow-y: auto;
-  overflow-x: hidden;
+    height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .scroll tbody td:last-child,
 .scroll thead th:last-child {
-  border-right: none;
+    border-right: none;
 }
 
- 
-
 .border-rightm {
-  border-right: 1px solid #ccc;
+    border-right: 1px solid #ccc;
 }
 
 //input-group-text-bg
 .limelite {
-  background-color: #dce775 !important;
+    background-color: #dce775 !important;
 }
 
 // card-header-title
 .card-header-smash {
-  background-color: #80cbc4 !important;
+    background-color: #80cbc4 !important;
 }
+
 //border-radius rounded-0
 .input-group-text,
 input,
 select,
 .ng-select .ng-select-container,
 textarea {
-  border-radius: 0px !important;
+    border-radius: 0px !important;
 }
 
 // custome classes
-
-.dss-border
- {
-  border: 2px solid blue !important;
+.dss-border {
+    border: 2px solid blue !important;
 }
 
-
-.dss-border-start{
-  border-left: 2px solid blue !important;
+.dss-border-start {
+    border-left: 2px solid blue !important;
 }
 
-
-.dss-border-end{
-  border-right: 2px solid blue !important;
+.dss-border-end {
+    border-right: 2px solid blue !important;
 }
 
-
-.dss-border-top{
-  border-top: 2px solid blue !important;
+.dss-border-top {
+    border-top: 2px solid blue !important;
 }
 
-
-.dss-border-bottom{
-  border-bottom: 2px solid blue !important;
+.dss-border-bottom {
+    border-bottom: 2px solid blue !important;
 }
-
 
 // radius
-.dss-ng-radius-10{
-  border-radius: 10px !important;
+.dss-ng-radius-10 {
+    border-radius: 10px !important;
 }
 
-.dss-ng-radius-10 > .ng-select-container{
-  border-radius: 10px !important;
+.dss-ng-radius-10>.ng-select-container {
+    border-radius: 10px !important;
 }
 
 //new tables
 table {
-  width: 100%;
+    width: 100%;
 }
 
-thead, tbody, tfoot, tr, td, th { display: block; }
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+    display: block;
+}
 
 tr:after {
-  content: ' ';
-  display: block;
-  visibility: hidden;
-  clear: both;
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
 }
 
 thead th {
-  height: 30px;
-  padding-bottom: 2em !important;
-  /*text-align: left;*/
+    height: 30px;
+    padding-bottom: 2em !important;
+    /*text-align: left;*/
 }
 
 tbody {
-  height: calc(100vh - 240px);
-  overflow-y: auto;
-}
- 
-tbody td, thead th,tfoot td {
-  width: 19.2%;
-  float: left;
+    height: calc(100vh - 240px);
+    overflow-y: auto;
 }
 
-
-
-
-
- 
+tbody td,
+thead th,
+tfoot td {
+    width: 19.2%;
+    float: left;
+}

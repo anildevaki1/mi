@@ -80,8 +80,14 @@ export class ContainerComponent implements OnInit, AfterViewInit {
 
     this.entity.firm_name = companylist.firm_name;
     this.entity.firm_id = companylist.firm_id;
+    
+    var selectedYear=companylist.years.filter(f=>f.div_id==this.ref.div_id)[0];
 
 
+    this.provider.companyinfo.finyear.fdt= selectedYear.fdt;
+    
+    this.provider.companyinfo.finyear.tdt= selectedYear.tdt;
+        
     this.provider.companyinfo.selectedbranch = Object.assign({}, this.entity);
 
      
