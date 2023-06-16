@@ -95,11 +95,7 @@ export class ContainerComponent implements OnInit, AfterViewInit {
     $('#FinYearModal').modal('hide');
   //  this.router.navigate(['home']);
   }
-
-  onyearSelect(ref)
-  {
-    this.provider.companyinfo.finyear=ref
-  }
+ 
 
   logout()
   {
